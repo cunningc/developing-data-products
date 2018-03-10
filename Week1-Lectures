@@ -1,0 +1,213 @@
+Week 1 Lectures
+
+Shiny
+- web application framework for R made by R-Studio
+- typically requires a shiny server to publish
+- R-Studio has a limited server you can use at shinyapps.io
+- uses Bootstrap style framework for reacive 
+
+Getting Started
+install.packages("shiny")
+library(shiny)
+Great tutorial at http://shiny.rstudio.com/tutorial/
+
+A shiny project is a directory containing at least two files:
+ui.R (for user interface) controls how your app looks.
+server.R that controls what your app does.
+
+===== Code Demos ========
+ui.R
+library(shiny)
+
+shinyUI(fluidPage(  ## page type with main panel and side panel
+  titlePanel("Data science FTW!"), ## title
+  sidebarLayout(  ## designates a sidebar layout
+    sidebarPanel( ## panel for sidebar
+      h3("Sidebar Text")
+    ),
+    mainPanel(
+      h3("Main Panel Text")
+    )
+  )
+))
+
+server.R
+library(shiny)
+shinyServer(function(input, output) {
+})
+
+To run it
+In R, change to the directories with these files and type runApp()
+or put the path to the directory as an argument
+It should open a browser window with the app running
+
+You can navigate to the directory your shiny app is in by setting the working directory to the Source File Location
+then use the runApp() function to run the application
+
+What's happening is the shiny is instantiating a small web server running locally and listening on port 6956 and then R is connecting to it with its built-in browser
+
+then somehow we want to push the server up onto the internet so that anyone can access it
+
+The easiest way to share with another R programmer is to share the app files
+
+Lecture 2
+HTML Tags in Shiny
+use ?builder to see all the html tags
+you can use your own html files and make your  pages as elaborate as you want
+
+--more code from the lecture slide here--
+- demonstrates the effect of heading values
+
+From the R studio browser you can open in a regular web browser
+then use Control-U to view the HTML code
+
+you will notice it is using jquery and bootstrap
+
+Lecture 3
+App with inputs and outputs
+- create a slider that has appars in the UI
+
+in the sidebarPanel use sliderInput("slider2","slide")
+
+-- the shiny server is a function that takes input and output
+it takes the input from the UI.R, call the slider then returns the output value
+-- the output$ and input$ fields are called based on values you assign 
+- as in output$text or input$slider2
+
+lecture 4 ("Shiny 1.5")
+Apps with Plots
+--- copy code from the R markdown document in the lecture notes repo
+- for Plot Random Numbers
+- has 2 sliders and 4 checkboxes
+
+Note the code runs in an event driven manner (reactive statements)
+
+Shiny Part 2
+Lecture 1
+A reactive expression is like  recipie that manipulates inputs from 'shiny and then returns a value
+- creating a reactive expression is just like creating a function:
+calc_sum<-reactive({
+input$box1 + input$box2
+})
+# ...
+calc_sum()
+
+})
+
+-- code example from lecture notes
+
+Lecture 2
+-- use code from lecture markdown notes doc
+- sidebar panel contains inputs
+- mainPanel contains the outputs
+
+Lecture 3
+Delayed Reactivity
+-- default is to run server functions as chages to input are made
+-- sometimes you want to set all the values then make it run
+use code - submitButton("Submit") # submit button holds execution unitl submit button hits
+
+Lecture 4
+Advanced UI
+-- adding other kinds of UI components: tabs, new line br()
+- tabsetPanel() nested UI structure
+
+Lecture 5
+Using your own HTML
+- in the directory where your server.R is located, add a folder called WWW
+- then in that folder add an index.html
+- you can build a prototype, open in regular browser and show html code, then copy and paste into the index.html
+- then you can customize the look and feel any way you want
+
+Lecture 6
+Interactive Graphics (brush, brushPoints() )
+--- code from r markdown lecture doc
+plotOutput("plot1",brush = brushopts)
+
+
+Shiny Gadgets Section
+Lecture 1
+- development has stopped on "manipulate" package because of shiny
+
+Shiny gadgets provide a way to use Shiny interactivity in a small single page app
+- in RStudio
+
+-- code sample from lecture notes markdown file
+library(miniUI)
+gadget is a function() you create with ui<-miniPage(gadgetTitleBar("My First Gadget"))
+define a server
+then run by runGadget(ui, server)
+
+Lecture 2
+gadgets can take values as arguments (since they are functions)
+
+Lecture 3
+interactive graphic
+-- code example from the lecture notes is a simple interactive plot
+trees girth by volme with a crosshair to select plot areas by dragging the mouse
+- the brush is creating the cross-hairs
+
+Google VIS API see examples in the "Developing Data Porducts Course RMD file line number 458"
+- a amazing R package, very well documented
+developers.google.com/chart/interactive/docs/gallery
+
+Lecture 1
+--code from lecture notes
+library(googleVis)
+fruits is a dataframe
+- create a gvisMotionChart()
+- this is a collection of javascript organized by the gVis R package
+print(M, file = "test.html") will print the page
+- you will likely want to experiment in R to create your interactive graphics then print the html and embed the html code in your html page
+
+Lecture 2
+googleVis gives you access to lots of different chart types including maps
+- interative maps is fun to play with
+ - allows you to specify regions and zoom in
+ - the online docs are very good
+ - github.com/mages/introduction_to_googleVis/
+ 
+ you can combine multiple plots together to combine into a dashboard type presentation
+ 
+ you typically would embed these in R markdown based docs
+ - set results="asis" in chunk options to make it work
+ can be used with knitr and slidify
+ 
+ Plotly
+ Lecture 1
+ see course notes rmd line 484
+ - nice for interchanging axis labels
+ 
+ Lecture 2
+ ## Basic Scatterplot
+ library(plotly)
+ plot_ly(mtcars, x=wt,y=mpg,mode="markers")
+ 
+ you can save as an image, export, etc.
+ 
+ Lecture 3 - plotly options
+ building 3-d interactive plots
+ - encourage you to post on Rpubs for practice
+ 
+ Lecture 4 - plotly time-series line graphs
+ - like a market index
+ it's important to use tidyr and dplyr for these type of manipulations
+
+ Lecture 5 - plotly histograms including box plots, heatmaps, 3-d surface maps
+ 
+ Lecture 6 - plotly choropleth maps with hover-over text and borders
+ - suggest createing other maps from the example dataframes
+ 
+ Lecture 7 - ggplot from the plotly website (ggplotly)
+ 
+ Lecture 8 - Posting to plotly direclty
+ plotly_POST(gg) will plot the graph from the previous lecture to the plotly web site
+ 
+ NOTES - you will need to set up system environments in order to post to the plotly site
+ Sys.setenv("plotly_username"="your_plotly_username")
+ Sys.setenv("plotly_api_key"="your_api_key")
+ 
+ 
+ 
+ 
+ 

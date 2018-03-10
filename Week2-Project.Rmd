@@ -1,0 +1,26 @@
+---
+output:
+  ioslides_presentation: default
+  slidy_presentation: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE)
+```
+
+## 3/09/2018
+```{r}
+library(leaflet)
+library(magrittr)
+df <- data.frame(lat = runif(10, min = 37.75, max = 37.756),
+                 lng = runif(10, min = -100.023, max = -100.018),
+                 col = c("red", "blue", "green","red", "blue", "green","red", "blue", "green","red"),
+                 stringsAsFactors = FALSE)
+
+df %>%
+  leaflet() %>%
+  addTiles() %>%
+  addCircleMarkers(color = df$col) %>%
+  addMarkers(lat=37.753343, lng=-100.020635,popup="Boot Hill") %>%
+  addLegend(labels = c("Shootouts", "Hangings", "Saloons"), colors = c("blue", "red", "green"))
+```

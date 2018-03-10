@@ -1,0 +1,38 @@
+Class Overview and Resources
+
+In R you can create web sites, documents, complex graphics. This course covers the basics of creating data products using Shiny, R packages, and interactive graphics. The course will focus on the fundamentals of creating a data product that can be used to tell a story about data to a mass audience.
+
+Course Content
+The lectures will be taught over four weeks with the third week dedicated to creating R packages.
+
+The weeks are organized as follows
+1. Shiny, rCharts, manipulate, googleVis
+2. Presenting data analysis, slidify, R Studio presenter.
+3. Students creating and deploying their projects
+4. Creating R packages, classes and methods, yhat.
+
+Github repository
+The most up to date information on the course lecture notes will always be in the Github repository
+The data science specialization is here
+https://github.com/DataScienceSpecialization/Developing_Data_Products
+
+Please issue pull requests so that we may improve the materials.
+YouTube: If you’d prefer to watch the videos on YouTube, most of them can be found here:
+https://www.youtube.com/playlist?list=PLpl-gQkQivXhr9PyOWSA3aOHf4ZNTrs90
+
+Book: "Developing Data Products in R""
+This book introduces the topic of Developing Data Products in R. A data product is the ideal output of a Data Science experiment. This book is based on the Coursera Class “Developing Data Products” as part of the Data Science Specialization. Particular emphasis is paid to developing Shiny apps and interactive graphics.
+The book is available here: https://leanpub.com/ddp
+
+Community Site
+Since the beginning of the Data Science Specialization, we’ve noticed the unbelievable passion students have about our courses and the generosity they show toward each other on the course forums. A couple students have created quality content around the subjects we discuss, and many of these materials are so good we feel that they should be shared with all of our students.
+We’re excited to announce that we’ve created a site using GitHub Pages: http://datasciencespecialization.github.io/ to serve as a directory for content that the community has created. If you’ve created materials relating to any of the courses in the Data Science Specialization, please send us a pull request so we can add a link to your content on our site. 
+
+SHINY SERVER
+A Shiny server is required to host a shiny app for the world. Otherwise, only those who have have shiny installed and have access to your code could run your web page (really defeating the purpose of making a web page in the first place).
+
+In this class, we won’t cover creating a shiny server, as that requires understanding a little linux server administration. Instead, we’ll run our apps locally and use RStudio’s service for hosting shiny apps (their servers) on a platform called shinyapps.io. In other words, RStudio does the server work for your so that all you need to worry about is building your app. Shinyapps.io is free up to a point in that you can only run 5 apps for a certain amount of time per month. This will be fine for our purposes, but if you’re really going to get into making Shiny apps, you’ll have to spring for a paid plan or run your own server.
+
+Some people in this session let us know that they are concerned about running up against the 25-hour per month limit on the free tier of shinyapps.io.
+
+Should you hit the limit on the free plan, RStudio will send you a message. If you receive the message and are more than a few days from getting a fresh 25 hours on your monthly renewal, please send an email to shinyapps-support@rstudio.com with the email address you use on the service and the account name you are using (the first part of the URL). RStudio will then increase your limit so you can continue working on your project.
