@@ -8,19 +8,10 @@
 knitr::opts_chunk$set(echo = FALSE, message = FALSE)
 ```
 
-##3/09/2018
+##3/17/2018
 ```{r}
-library(leaflet)
-library(magrittr)
-df <- data.frame(lat = runif(10, min = 37.75, max = 37.756),
-                 lng = runif(10, min = -100.023, max = -100.018),
-                 col = c("red", "blue", "green","red", "blue", "green","red", "blue", "green","red"),
-                 stringsAsFactors = FALSE)
-boothill<-"<a href='http://boothill.org'>Boot Hill Museum</a>"
-df %>%
-  leaflet() %>%
-  addTiles() %>%
-  addCircleMarkers(color = df$col) %>%
-  addMarkers(lat=37.753343, lng=-100.020635,popup=boothill) %>%
-  addLegend(labels = c("Shootouts", "Hangings", "Saloons"), colors = c("blue", "red", "green"))
+library(plotly)
+# volcano is a numeric matrix that ships with R
+p <- plot_ly(z = ~volcano) %>% add_surface()
+p
 ```
